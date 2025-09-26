@@ -1,0 +1,42 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/Challenge11Factory.sol": {
+      "content": "//SPDX-License-Identifier: MIT\npragma solidity >=0.8.0 <0.9.0;\n\ninterface IChallenge11 {\n    function mintFlag() external;\n}\n\ncontract Challenge11Caller {\n    address public target;\n\n    constructor(address _target) {\n        target = _target;\n    }\n\n    function callMint() external {\n        IChallenge11(target).mintFlag();\n    }\n}\n\ncontract Challenge11Factory {\n    event Deployed(address addr);\n\n    function deployWithSalt(bytes32 salt, bytes memory creation) external returns (address a) {\n        assembly {\n            a := create2(0, add(creation, 0x20), mload(creation), salt)\n        }\n        require(a != address(0), \"create2 failed\");\n        emit Deployed(a);\n    }\n}\n"
+    },
+    "contracts/Challenge2Solution.sol": {
+      "content": "//SPDX-License-Identifier: MIT\npragma solidity >=0.8.0 <0.9.0;\n\ninterface IChallenge2 {\n    function justCallMe() external;\n}\n\ncontract Challenge2Solution {\n    function solve(address challenge) external {\n        IChallenge2(challenge).justCallMe();\n    }\n}\n"
+    },
+    "contracts/Challenge3Solution.sol": {
+      "content": "//SPDX-License-Identifier: MIT\npragma solidity >=0.8.0 <0.9.0;\n\ninterface IChallenge3 {\n    function mintFlag() external;\n}\n\ncontract Challenge3Solution {\n    constructor(address challenge) {\n        // call from constructor so extcodesize(caller()) == 0 in Challenge3\n        IChallenge3(challenge).mintFlag();\n    }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "evmVersion": "paris",
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

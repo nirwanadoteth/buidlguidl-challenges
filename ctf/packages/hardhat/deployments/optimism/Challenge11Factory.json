@@ -1,0 +1,78 @@
+{
+  "address": "0x9D3CEF285508e195656D934259f2e8a555002C5d",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "addr",
+          "type": "address"
+        }
+      ],
+      "name": "Deployed",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "salt",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes",
+          "name": "creation",
+          "type": "bytes"
+        }
+      ],
+      "name": "deployWithSalt",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "a",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x5059363122a29887f9cad28d260c6e150bfbf18b6262e2984a7fcfe9b516140a",
+  "receipt": {
+    "to": null,
+    "from": "0xf68da68C7894b62aaA893D49F3B119177C98dE69",
+    "contractAddress": "0x9D3CEF285508e195656D934259f2e8a555002C5d",
+    "transactionIndex": 83,
+    "gasUsed": "164149",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x49efef306372070927d015f90e91d91b01e7023efe287a45eeceb2b85e41a2d4",
+    "transactionHash": "0x5059363122a29887f9cad28d260c6e150bfbf18b6262e2984a7fcfe9b516140a",
+    "logs": [],
+    "blockNumber": 140207537,
+    "cumulativeGasUsed": "24513829",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "9ae0ae120ee96c5870f0b98b6a2bbaed",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"}],\"name\":\"Deployed\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"salt\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"creation\",\"type\":\"bytes\"}],\"name\":\"deployWithSalt\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"a\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/Challenge11Factory.sol\":\"Challenge11Factory\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/Challenge11Factory.sol\":{\"content\":\"//SPDX-License-Identifier: MIT\\npragma solidity >=0.8.0 <0.9.0;\\n\\ninterface IChallenge11 {\\n    function mintFlag() external;\\n}\\n\\ncontract Challenge11Caller {\\n    address public target;\\n\\n    constructor(address _target) {\\n        target = _target;\\n    }\\n\\n    function callMint() external {\\n        IChallenge11(target).mintFlag();\\n    }\\n}\\n\\ncontract Challenge11Factory {\\n    event Deployed(address addr);\\n\\n    function deployWithSalt(bytes32 salt, bytes memory creation) external returns (address a) {\\n        assembly {\\n            a := create2(0, add(creation, 0x20), mload(creation), salt)\\n        }\\n        require(a != address(0), \\\"create2 failed\\\");\\n        emit Deployed(a);\\n    }\\n}\\n\",\"keccak256\":\"0x0c86ab7f2f4775f7cc404c67aa7fde4e3318bc5ac84a1b834fc20abb6957f312\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610201806100206000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c8063e988714914610030575b600080fd5b61004361003e366004610110565b61005f565b6040516001600160a01b03909116815260200160405180910390f35b6000828251602084016000f590506001600160a01b0381166100b85760405162461bcd60e51b815260206004820152600e60248201526d18dc99585d194c8819985a5b195960921b604482015260640160405180910390fd5b6040516001600160a01b03821681527ff40fcec21964ffb566044d083b4073f29f7f7929110ea19e1b3ebe375d89055e9060200160405180910390a192915050565b634e487b7160e01b600052604160045260246000fd5b6000806040838503121561012357600080fd5b82359150602083013567ffffffffffffffff8082111561014257600080fd5b818501915085601f83011261015657600080fd5b813581811115610168576101686100fa565b604051601f8201601f19908116603f01168101908382118183101715610190576101906100fa565b816040528281528860208487010111156101a957600080fd5b826020860160208301376000602084830101528095505050505050925092905056fea264697066735822122046c8ac47b6cd893d8b4e228c41042586513beff88300de95b2f9e551fb63940664736f6c63430008140033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061002b5760003560e01c8063e988714914610030575b600080fd5b61004361003e366004610110565b61005f565b6040516001600160a01b03909116815260200160405180910390f35b6000828251602084016000f590506001600160a01b0381166100b85760405162461bcd60e51b815260206004820152600e60248201526d18dc99585d194c8819985a5b195960921b604482015260640160405180910390fd5b6040516001600160a01b03821681527ff40fcec21964ffb566044d083b4073f29f7f7929110ea19e1b3ebe375d89055e9060200160405180910390a192915050565b634e487b7160e01b600052604160045260246000fd5b6000806040838503121561012357600080fd5b82359150602083013567ffffffffffffffff8082111561014257600080fd5b818501915085601f83011261015657600080fd5b813581811115610168576101686100fa565b604051601f8201601f19908116603f01168101908382118183101715610190576101906100fa565b816040528281528860208487010111156101a957600080fd5b826020860160208301376000602084830101528095505050505050925092905056fea264697066735822122046c8ac47b6cd893d8b4e228c41042586513beff88300de95b2f9e551fb63940664736f6c63430008140033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [],
+    "types": null
+  }
+}

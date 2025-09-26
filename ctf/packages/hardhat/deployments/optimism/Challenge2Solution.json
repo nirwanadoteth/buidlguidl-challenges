@@ -1,0 +1,54 @@
+{
+  "address": "0xFeE5Ec013790f1DB62DCbc754EF3Fe9965C5EC6f",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "challenge",
+          "type": "address"
+        }
+      ],
+      "name": "solve",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x25aaafb5fc7c3275e7482e8097135d738f2260d3470edf9a51e807e14de34627",
+  "receipt": {
+    "to": null,
+    "from": "0xf68da68C7894b62aaA893D49F3B119177C98dE69",
+    "contractAddress": "0xFeE5Ec013790f1DB62DCbc754EF3Fe9965C5EC6f",
+    "transactionIndex": 81,
+    "gasUsed": "106521",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0xd021ea5e62c1810ab43a575b12f910c52e604b0f1248d5122f9a35c3def8c979",
+    "transactionHash": "0x25aaafb5fc7c3275e7482e8097135d738f2260d3470edf9a51e807e14de34627",
+    "logs": [],
+    "blockNumber": 140206092,
+    "cumulativeGasUsed": "6678605",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "9ae0ae120ee96c5870f0b98b6a2bbaed",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"challenge\",\"type\":\"address\"}],\"name\":\"solve\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/Challenge2Solution.sol\":\"Challenge2Solution\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/Challenge2Solution.sol\":{\"content\":\"//SPDX-License-Identifier: MIT\\npragma solidity >=0.8.0 <0.9.0;\\n\\ninterface IChallenge2 {\\n    function justCallMe() external;\\n}\\n\\ncontract Challenge2Solution {\\n    function solve(address challenge) external {\\n        IChallenge2(challenge).justCallMe();\\n    }\\n}\\n\",\"keccak256\":\"0x7b03430bb9282525e7a6072f691b926fbfb7ab917b7fc42f4b6e80adad4cde2c\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060f68061001f6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80635a10731414602d575b600080fd5b603c60383660046092565b603e565b005b806001600160a01b03166382cb05c66040518163ffffffff1660e01b8152600401600060405180830381600087803b158015607857600080fd5b505af1158015608b573d6000803e3d6000fd5b5050505050565b60006020828403121560a357600080fd5b81356001600160a01b038116811460b957600080fd5b939250505056fea2646970667358221220e83e07cb81c8e0d6da0f18ad494ef65d0f535ca97f987c2da66ffaa61ff7630564736f6c63430008140033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c80635a10731414602d575b600080fd5b603c60383660046092565b603e565b005b806001600160a01b03166382cb05c66040518163ffffffff1660e01b8152600401600060405180830381600087803b158015607857600080fd5b505af1158015608b573d6000803e3d6000fd5b5050505050565b60006020828403121560a357600080fd5b81356001600160a01b038116811460b957600080fd5b939250505056fea2646970667358221220e83e07cb81c8e0d6da0f18ad494ef65d0f535ca97f987c2da66ffaa61ff7630564736f6c63430008140033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [],
+    "types": null
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/Challenge6Solution.sol": {
+      "content": "//SPDX-License-Identifier: MIT\npragma solidity >=0.8.0 <0.9.0;\n\ninterface IChallenge6 {\n    function mintFlag(uint256 code) external;\n}\n\ncontract Challenge6Solution {\n    address public target;\n\n    constructor(address _target) {\n        target = _target;\n    }\n\n    function name() external pure returns (string memory) {\n        return \"BG CTF Challenge 6 Solution\";\n    }\n\n    function solve(uint256 code) external {\n        // Forward ~200k gas to satisfy Challenge6 (requires 190k < gasleft() < 200k inside target).\n        // Using 200_000 here typically results in <200k by the time the check runs.\n        (bool ok, bytes memory ret) = target.call{ gas: 200_000 }(\n            abi.encodeWithSelector(IChallenge6.mintFlag.selector, code)\n        );\n        if (!ok) {\n            assembly {\n                revert(add(ret, 0x20), mload(ret))\n            }\n        }\n    }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "evmVersion": "paris",
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "address": "0xBB1034796120088a927AB510F8f8c694f1D60081",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_target",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "name",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "code",
+          "type": "uint256"
+        }
+      ],
+      "name": "solve",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "target",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x433800e3da7bc098548ce35337b09fdc7bae5c1e57aa5d76708aa03185d0e328",
+  "receipt": {
+    "to": null,
+    "from": "0xf68da68C7894b62aaA893D49F3B119177C98dE69",
+    "contractAddress": "0xBB1034796120088a927AB510F8f8c694f1D60081",
+    "transactionIndex": 58,
+    "gasUsed": "202554",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x3a1e694b1f1a65ece2548ce45608fa8d0075d7dce5f2671f6ba2b8027dfad103",
+    "transactionHash": "0x433800e3da7bc098548ce35337b09fdc7bae5c1e57aa5d76708aa03185d0e328",
+    "logs": [],
+    "blockNumber": 140207412,
+    "cumulativeGasUsed": "7006156",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x75961D2da1DEeBaEC24cD0E180187E6D55F55840"
+  ],
+  "numDeployments": 4,
+  "solcInputHash": "7429500eac1a98f37b41772eef304c94",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_target\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"code\",\"type\":\"uint256\"}],\"name\":\"solve\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"target\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/Challenge6Solution.sol\":\"Challenge6Solution\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/Challenge6Solution.sol\":{\"content\":\"//SPDX-License-Identifier: MIT\\npragma solidity >=0.8.0 <0.9.0;\\n\\ninterface IChallenge6 {\\n    function mintFlag(uint256 code) external;\\n}\\n\\ncontract Challenge6Solution {\\n    address public target;\\n\\n    constructor(address _target) {\\n        target = _target;\\n    }\\n\\n    function name() external pure returns (string memory) {\\n        return \\\"BG CTF Challenge 6 Solution\\\";\\n    }\\n\\n    function solve(uint256 code) external {\\n        // Forward ~200k gas to satisfy Challenge6 (requires 190k < gasleft() < 200k inside target).\\n        // Using 200_000 here typically results in <200k by the time the check runs.\\n        (bool ok, bytes memory ret) = target.call{ gas: 200_000 }(\\n            abi.encodeWithSelector(IChallenge6.mintFlag.selector, code)\\n        );\\n        if (!ok) {\\n            assembly {\\n                revert(add(ret, 0x20), mload(ret))\\n            }\\n        }\\n    }\\n}\\n\",\"keccak256\":\"0x47acda6d03d83b5b60506f795ae123e09bfeb71d9e747d48749cb196f980bc10\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516102d53803806102d583398101604081905261002f91610054565b600080546001600160a01b0319166001600160a01b0392909216919091179055610084565b60006020828403121561006657600080fd5b81516001600160a01b038116811461007d57600080fd5b9392505050565b610242806100936000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c806306fdde0314610046578063b8b8d35a1461008e578063d4b83992146100a3575b600080fd5b604080518082018252601b81527f424720435446204368616c6c656e6765203620536f6c7574696f6e00000000006020820152905161008591906101a4565b60405180910390f35b6100a161009c3660046101d7565b6100ce565b005b6000546100b6906001600160a01b031681565b6040516001600160a01b039091168152602001610085565b6000805460408051602480820186905282518083039091018152604490910182526020810180516001600160e01b03166311efb5eb60e11b179052905183926001600160a01b03169162030d409161012691906101f0565b60006040518083038160008787f1925050503d8060008114610164576040519150601f19603f3d011682016040523d82523d6000602084013e610169565b606091505b50915091508161017b57805160208201fd5b505050565b60005b8381101561019b578181015183820152602001610183565b50506000910152565b60208152600082518060208401526101c3816040850160208701610180565b601f01601f19169190910160400192915050565b6000602082840312156101e957600080fd5b5035919050565b60008251610202818460208701610180565b919091019291505056fea2646970667358221220cf1bb260f561e36955f4abe6d36132ad354a6d7c8ad9debc0f7f0966a890c34064736f6c63430008140033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c806306fdde0314610046578063b8b8d35a1461008e578063d4b83992146100a3575b600080fd5b604080518082018252601b81527f424720435446204368616c6c656e6765203620536f6c7574696f6e00000000006020820152905161008591906101a4565b60405180910390f35b6100a161009c3660046101d7565b6100ce565b005b6000546100b6906001600160a01b031681565b6040516001600160a01b039091168152602001610085565b6000805460408051602480820186905282518083039091018152604490910182526020810180516001600160e01b03166311efb5eb60e11b179052905183926001600160a01b03169162030d409161012691906101f0565b60006040518083038160008787f1925050503d8060008114610164576040519150601f19603f3d011682016040523d82523d6000602084013e610169565b606091505b50915091508161017b57805160208201fd5b505050565b60005b8381101561019b578181015183820152602001610183565b50506000910152565b60208152600082518060208401526101c3816040850160208701610180565b601f01601f19169190910160400192915050565b6000602082840312156101e957600080fd5b5035919050565b60008251610202818460208701610180565b919091019291505056fea2646970667358221220cf1bb260f561e36955f4abe6d36132ad354a6d7c8ad9debc0f7f0966a890c34064736f6c63430008140033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 9,
+        "contract": "contracts/Challenge6Solution.sol:Challenge6Solution",
+        "label": "target",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_address"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      }
+    }
+  }
+}

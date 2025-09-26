@@ -1,0 +1,85 @@
+{
+  "address": "0xf933E0E38DA789117F8283E9217054C6fbaB5aBF",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "challenge",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    }
+  ],
+  "transactionHash": "0x4a93935d0e0b10973b7ed2aa770afc24df6f7efbfb0268b9da8d084f2a8b59cf",
+  "receipt": {
+    "to": null,
+    "from": "0xf68da68C7894b62aaA893D49F3B119177C98dE69",
+    "contractAddress": "0xf933E0E38DA789117F8283E9217054C6fbaB5aBF",
+    "transactionIndex": 95,
+    "gasUsed": "167096",
+    "logsBloom": "0x00000000000000000000000000000020000000000000000000000000000000000000000000000001000000000000000000000200020000000000000000000000000000000008000000000028000000000000000000000000000000000000000000000000020000000000000001000800000000000000000000000010002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000000000000000400000000202000000000000000000800000002000000000000010000000000020000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0xb1f296a538e18a59901228879c35cc98485b9b15787dee2271d251562c191fca",
+    "transactionHash": "0x4a93935d0e0b10973b7ed2aa770afc24df6f7efbfb0268b9da8d084f2a8b59cf",
+    "logs": [
+      {
+        "transactionIndex": 95,
+        "blockNumber": 140205915,
+        "transactionHash": "0x4a93935d0e0b10973b7ed2aa770afc24df6f7efbfb0268b9da8d084f2a8b59cf",
+        "address": "0xc1Ebd7a78FE7c075035c516B916A7FB3f33c26cE",
+        "topics": [
+          "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x000000000000000000000000f68da68c7894b62aaa893d49f3b119177c98de69",
+          "0x000000000000000000000000000000000000000000000000000000000000015f"
+        ],
+        "data": "0x",
+        "logIndex": 308,
+        "blockHash": "0xb1f296a538e18a59901228879c35cc98485b9b15787dee2271d251562c191fca"
+      },
+      {
+        "transactionIndex": 95,
+        "blockNumber": 140205915,
+        "transactionHash": "0x4a93935d0e0b10973b7ed2aa770afc24df6f7efbfb0268b9da8d084f2a8b59cf",
+        "address": "0xc1Ebd7a78FE7c075035c516B916A7FB3f33c26cE",
+        "topics": [
+          "0xef633ead5fa8a224bb818380531535925c31239123ac0a6f54c9135616f05475",
+          "0x000000000000000000000000f68da68c7894b62aaa893d49f3b119177c98de69",
+          "0x000000000000000000000000000000000000000000000000000000000000015f",
+          "0x0000000000000000000000000000000000000000000000000000000000000003"
+        ],
+        "data": "0x",
+        "logIndex": 309,
+        "blockHash": "0xb1f296a538e18a59901228879c35cc98485b9b15787dee2271d251562c191fca"
+      }
+    ],
+    "blockNumber": 140205915,
+    "cumulativeGasUsed": "13502465",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x03bF70f50fcF9420f27e31B47805bbd8f2f52571"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "9ae0ae120ee96c5870f0b98b6a2bbaed",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"challenge\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/Challenge3Solution.sol\":\"Challenge3Solution\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/Challenge3Solution.sol\":{\"content\":\"//SPDX-License-Identifier: MIT\\npragma solidity >=0.8.0 <0.9.0;\\n\\ninterface IChallenge3 {\\n    function mintFlag() external;\\n}\\n\\ncontract Challenge3Solution {\\n    constructor(address challenge) {\\n        // call from constructor so extcodesize(caller()) == 0 in Challenge3\\n        IChallenge3(challenge).mintFlag();\\n    }\\n}\\n\",\"keccak256\":\"0x1b5e3c11c816c983c475edbbd7c8256204fbdc32a2d3c44a1e17df849898922c\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b506040516100fd3803806100fd833981016040819052602c916082565b806001600160a01b031663e00d023f6040518163ffffffff1660e01b8152600401600060405180830381600087803b158015606657600080fd5b505af11580156079573d6000803e3d6000fd5b505050505060b0565b600060208284031215609357600080fd5b81516001600160a01b038116811460a957600080fd5b9392505050565b603f806100be6000396000f3fe6080604052600080fdfea2646970667358221220a08cb660e7be2c2060cfd2d21c43b9eff6c34a6656faf7ece922e1589e9a6dd464736f6c63430008140033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220a08cb660e7be2c2060cfd2d21c43b9eff6c34a6656faf7ece922e1589e9a6dd464736f6c63430008140033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [],
+    "types": null
+  }
+}

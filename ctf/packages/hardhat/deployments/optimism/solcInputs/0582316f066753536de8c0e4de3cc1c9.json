@@ -1,0 +1,36 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/Challenge6Solution.sol": {
+      "content": "//SPDX-License-Identifier: MIT\npragma solidity >=0.8.0 <0.9.0;\n\ninterface IChallenge6 {\n    function mintFlag(uint256 code) external;\n}\n\ncontract Challenge6Solution {\n    address public target;\n\n    constructor(address _target) {\n        target = _target;\n    }\n\n    function name() external pure returns (string memory) {\n        return \"BG CTF Challenge 6 Solution\";\n    }\n\n    function solve(uint256 code) external {\n        // Forward an explicit gas amount equal to `code` to avoid EIP-150 63/64 reduction surprises.\n        // If `code` exceeds the CALL cap (gasleft() - gasleft()/64), cap it so the CALL doesn't revert.\n        uint256 g = gasleft();\n        unchecked {\n            uint256 cap = g - g / 64; // max gas forwardable per EIP-150\n            uint256 toSend = code;\n            if (toSend > cap) {\n                toSend = cap;\n            }\n            (bool ok, bytes memory ret) = target.call{ gas: toSend }(\n                abi.encodeWithSelector(IChallenge6.mintFlag.selector, code)\n            );\n            if (!ok) {\n                // Bubble revert if present to expose on-chain hint (e.g., \"Wrong gas: X\")\n                assembly {\n                    revert(add(ret, 0x20), mload(ret))\n                }\n            }\n        }\n    }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "evmVersion": "paris",
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}
