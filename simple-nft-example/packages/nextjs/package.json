@@ -26,7 +26,7 @@
     "daisyui": "5.0.9",
     "ipfs-utils": "^9.0.14",
     "kubo-rpc-client": "^3.0.1",
-    "next": "~15.5.4",
+    "next": "~15.5.10",
     "next-nprogress-bar": "~2.3.13",
     "next-themes": "~0.3.0",
     "qrcode.react": "~4.0.1",
